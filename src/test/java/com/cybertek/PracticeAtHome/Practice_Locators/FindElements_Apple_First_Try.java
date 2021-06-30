@@ -6,21 +6,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class FindElements2_Apple {
+public class FindElements_Apple_First_Try {
 
-    WebDriver driver;
+    public static void main(String[] args) {
 
-    public void chromeSetup(){
-        driver = WebDriverFactory.getDriver("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://www.apple.com/");
+        checkLinks("mac");
+        checkLinks("ipad");
+        checkLinks("iphone");
+        checkLinks("watch");
+        checkLinks("tv");
+        checkLinks("music");
+        checkLinks("support");
+
     }
 
-    public void checkLinks(String headerName){
+    public static void checkLinks(String headerName){
 
+        WebDriver driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().window().maximize();
+
+        driver.get("https://www.apple.com");
 
         WebElement selectedTab = driver.findElement(By.xpath("//a[@class = 'ac-gn-link ac-gn-link-" + headerName +"']"));
         selectedTab.click();
@@ -45,24 +51,12 @@ public class FindElements2_Apple {
 
         System.out.println("Number of links without text in " + pageTitle + ": " + countNoText);
         System.out.println("Number of links with text in " + pageTitle + ": " + countWithText);
-        System.out.println("------------------------------------------------------------------");
+
+
+        driver.quit();
+
 
     }
-
-    public static void main(String[] args) {
-
-
-        FindElements2_Apple HeaderCheck = new FindElements2_Apple();
-
-        HeaderCheck.chromeSetup();
-        HeaderCheck.checkLinks("mac");
-        HeaderCheck.checkLinks("ipad");
-        HeaderCheck.checkLinks("iphone");
-        HeaderCheck.checkLinks("watch");
-        HeaderCheck.checkLinks("tv");
-        HeaderCheck.checkLinks("music");
-        HeaderCheck.checkLinks("support");
-
-    }
-
 }
+
+

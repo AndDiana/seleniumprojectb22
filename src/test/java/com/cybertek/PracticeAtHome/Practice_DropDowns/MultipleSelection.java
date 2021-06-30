@@ -32,11 +32,13 @@ public class MultipleSelection {
 
         List<WebElement> options = select.getOptions();
         for (WebElement each : options) {
+            Thread.sleep(2000);
             each.click();
             System.out.println(each.getText());
         }
 
         select.deselectAll();
+
     }
 
     @AfterMethod
@@ -44,4 +46,5 @@ public class MultipleSelection {
         driver.quit();
     }
 }
+
 
